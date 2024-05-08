@@ -21,8 +21,10 @@ public class Runner {
 
         scottishIslands.remove("Tresco"); // 5. Remove "Tresco" from the list by name
 
-        System.out.println("The index position of Arran is " + scottishIslands.indexOf("Arran") +".");
-        scottishIslands.remove(5); // 6. Remove "Arran" from the list by index
+        // System.out.println("The index position of Arran is " + scottishIslands.indexOf("Arran") + ".");
+        // scottishIslands.remove(5); // 6. Remove "Arran" from the list by index
+        // SOLUTION:
+        scottishIslands.remove(scottishIslands.indexOf("Arran"));
 
         System.out.println("The number of islands in my ArrayList is " + scottishIslands.size() + "."); // 7. Print the number of islands in your arraylist
 
@@ -43,9 +45,9 @@ public class Runner {
 
 // 1. Print out a list of the even integers
         System.out.println("List of even integers:");
-        for (int i = 0; i < numbers.size(); i++){
-            if (numbers.get(i)%2==0){
-                System.out.println (numbers.get(i));
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) % 2 == 0) {
+                System.out.println(numbers.get(i));
             }
         }
 
@@ -60,12 +62,16 @@ public class Runner {
                 smallestValue = numbers.get(i);
             }
         }
-        System.out.println("Difference between largest and smallest value is " + (largestValue-smallestValue) + ".");
-
+        System.out.println("Difference between largest and smallest value is " + (largestValue - smallestValue) + ".");
+// SOLUTION:
+        int maxNumber = Collections.max(numbers);
+        int minNumber = Collections.min(numbers);
+        System.out.println("Difference between max and min value is " + (maxNumber - minNumber) + ".");
 
 // 3. Print True if the list contains a 1 next to a 1 somewhere.
         System.out.println("Does the list contain a 1 and 1 next to each other:");
         for (int i = 0; i < numbers.size(); i++) {
+            if (i == numbers.size() - 1 ) break; // ADD GUARD CLAUSE, EARLY RETURN UNDER CERTAIN CONDITIONS
             if (numbers.get(i) == 1 && (numbers.get(i + 1) == 1)) {
                 System.out.println("True");
             }
@@ -75,23 +81,23 @@ public class Runner {
         for (int number : numbers) { // What does the colon do?
             runningTotal += number;
             System.out.println(runningTotal);
-        } // How to only show last result?
-
-        int runningTotal3 = numbers.get(0);
-        for (int i = 0; i < numbers.get(i); i++) { 
-            runningTotal3 += numbers.get(i+1);
-            System.out.println(runningTotal3);
+        }
+        // SOLUTION:
+        int sum = 0; // sets initial value
+        for (int i = 0; i < numbers.size(); i++){
+            sum += numbers.get(i);
+        }
+        System.out.println("Sum: " + sum); // Print outside for loop shows final solution only.
 
 // 5. Print the sum of the numbers...
 //  ...except the number 13 is unlucky, so it does not count...
-    //  ...and numbers that come immediately after a 13 also do not count.
-        int runningTotal2 = numbers.get(0);
-            for (int number : numbers) {
-            runningTotal2 += number;
-            if (numbers.get(i) == 13 || (numbers.get(i)+1 == 13)) {
-                continue;
-            }
-        System.out.println(runningTotal2);
-    }
+            //  ...and numbers that come immediately after a 13 also do not count.
+        int sum2 = 0;
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) == 13 || numbers.get(i-1) == 13) continue;
+            sum2 += numbers.get(i);
+        }
+        System.out.println("Sum without 13 or number immediately following: " + sum2);
 //  So [2, 7, 13, 2] would have sum of 9.
-}
+        }
+    }
