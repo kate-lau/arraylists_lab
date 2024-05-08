@@ -94,7 +94,7 @@ public class Runner {
             //  ...and numbers that come immediately after a 13 also do not count.
         int sum2 = 0;
         for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i) == 13 || numbers.get(i-1) == 13) continue;
+            if (numbers.get(i) == 13 || (i > 0 && numbers.get(i-1) == 13)) continue;
             sum2 += numbers.get(i);
         }
         System.out.println("Sum without 13 or number immediately following: " + sum2);
